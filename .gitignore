@@ -1,7 +1,9 @@
+.gitignore
 .idea
 out
 *.iml
 log
+*.md
 
 
 
