@@ -13,6 +13,15 @@ public class ArrayStorage {
     private Resume[] storage = new Resume[10000];
     private int size = 0;
 
+    public void update(Resume r) {
+        int i = findResume(r.toString());
+        if (i == -1) {
+            System.out.println("Error: uuid not found");
+            return;
+        }
+        System.out.println("uuid updated");
+    }
+
     public void clear() {
         Arrays.fill(storage, null);
         size = 0;
@@ -47,8 +56,8 @@ public class ArrayStorage {
             System.out.println("Error: uuid not found ");
             return;
         }
-        storage[i] = storage[size-1];
-        storage[size-1] = null;
+        storage[i] = storage[size - 1];
+        storage[size - 1] = null;
         size--;
     }
 

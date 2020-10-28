@@ -3,10 +3,6 @@ package urise.webapp;
 import urise.webapp.model.Resume;
 import urise.webapp.storage.ArrayStorage;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 /**
  * Interactive test for urise.webapp.storage.ArrayStorage implementation
  * (just run, no need to understand)
@@ -32,8 +28,10 @@ public class MainArray {
         System.out.println("Get dummy: " + ARRAY_STORAGE.get("dummy"));
 
         printAll();
+        ARRAY_STORAGE.update(r1);
         ARRAY_STORAGE.delete(r1.getUuid());
         printAll();
+        ARRAY_STORAGE.update(r1);
         ARRAY_STORAGE.clear();
         printAll();
 
