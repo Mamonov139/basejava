@@ -22,6 +22,8 @@ public abstract class AbstractArrayStorage implements Storage {
 
     protected abstract void removeResume(int index);
 
+    protected abstract void insertResume(int index, Resume resume);
+
     public Resume get(String uuid) {
         int index = findResume(uuid);
         if (index < 0 || index == size) {
@@ -45,16 +47,10 @@ public abstract class AbstractArrayStorage implements Storage {
             System.out.format("Error: %s already exist\n", resume.getUuid());
             return;
         }
-        if (index == size) {
-            storage[size] = resume;
-            size++;
-            return;
+        if (index < 0) {
+            index = -(index + 1);
         }
-        // System.arraycopy(storage, -(index + 1), storage, -(index + 1)+1, size + index+1);
-        for (int i = size - 1; i >= -(index + 1); i--) {
-            storage[i + 1] = storage[i];
-        }
-        storage[-(index + 1)] = resume;
+        insertResume(index, resume);
         size++;
     }
 
@@ -65,6 +61,7 @@ public abstract class AbstractArrayStorage implements Storage {
             return;
         }
         removeResume(index);
+        storage[size - 1] = null;
         size--;
     }
 
