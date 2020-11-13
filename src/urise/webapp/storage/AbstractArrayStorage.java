@@ -26,7 +26,7 @@ public abstract class AbstractArrayStorage implements Storage {
 
     public Resume get(String uuid) {
         int index = findResume(uuid);
-        if (index < 0 || index == size) {
+        if (index < 0) {
             System.out.format("Error: %s not found in Storage!\n", uuid);
             return null;
         }
@@ -43,12 +43,9 @@ public abstract class AbstractArrayStorage implements Storage {
             return;
         }
         int index = findResume(resume.getUuid());
-        if (index >= 0 && index < size) {
+        if (index >= 0) {
             System.out.format("Error: %s already exist\n", resume.getUuid());
             return;
-        }
-        if (index < 0) {
-            index = -(index + 1);
         }
         insertResume(index, resume);
         size++;
@@ -56,7 +53,7 @@ public abstract class AbstractArrayStorage implements Storage {
 
     public void delete(String uuid) {
         int index = findResume(uuid);
-        if (index < 0 || index == size) {
+        if (index < 0) {
             System.out.format("Error: %s not found in Storage!\n", uuid);
             return;
         }
@@ -72,10 +69,11 @@ public abstract class AbstractArrayStorage implements Storage {
 
     public void update(Resume resume) {
         int index = findResume(resume.getUuid());
-        if (index < 0 || index == size) {
+        if (index < 0) {
             System.out.format("Error: %s not found in Storage!\n", resume.getUuid());
             return;
         }
+        storage[index] = resume;
         System.out.format("%s updated\n", resume.getUuid());
     }
 }
