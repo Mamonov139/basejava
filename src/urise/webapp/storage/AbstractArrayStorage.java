@@ -1,5 +1,8 @@
 package urise.webapp.storage;
 
+import urise.webapp.exception.ExistStorageException;
+import urise.webapp.exception.NotExistStorageException;
+import urise.webapp.exception.StorageException;
 import urise.webapp.model.Resume;
 
 import java.util.Arrays;
@@ -27,8 +30,7 @@ public abstract class AbstractArrayStorage implements Storage {
     public Resume get(String uuid) {
         int index = findResume(uuid);
         if (index < 0) {
-            System.out.format("Error: %s not found in Storage!\n", uuid);
-            return null;
+            throw new NotExistStorageException(uuid);
         }
         return storage[index];
     }
@@ -39,13 +41,11 @@ public abstract class AbstractArrayStorage implements Storage {
 
     public void save(Resume resume) {
         if (size == STORAGE_LIMIT) {
-            System.out.format("Error: for %s not enough place\n", resume.getUuid());
-            return;
+            throw new StorageException("Storage overflow", resume.getUuid());
         }
         int index = findResume(resume.getUuid());
         if (index >= 0) {
-            System.out.format("Error: %s already exist\n", resume.getUuid());
-            return;
+            throw new ExistStorageException(resume.getUuid());
         }
         insertResume(index, resume);
         size++;
@@ -54,8 +54,7 @@ public abstract class AbstractArrayStorage implements Storage {
     public void delete(String uuid) {
         int index = findResume(uuid);
         if (index < 0) {
-            System.out.format("Error: %s not found in Storage!\n", uuid);
-            return;
+            throw new NotExistStorageException(uuid);
         }
         removeResume(index);
         storage[size - 1] = null;
