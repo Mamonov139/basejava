@@ -1,11 +1,15 @@
 package urise.webapp.storage;
-
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import urise.webapp.exception.ExistStorageException;
 import urise.webapp.exception.NotExistStorageException;
 import urise.webapp.model.Resume;
+
+import java.lang.reflect.Field;
 
 public abstract class AbstractArrayStorageTest {
 
@@ -31,6 +35,12 @@ public abstract class AbstractArrayStorageTest {
     @Test
     public void size() throws Exception {
         Assert.assertEquals(3, storage.size());
+    }
+
+    @Test
+    public void storageOverflow() throws Exception{
+        Resume r = new Resume();
+        Field field = r.getClass().getDeclaredField();
     }
 
     @Test
@@ -64,10 +74,15 @@ public abstract class AbstractArrayStorageTest {
 
     @Test
     public void clear() throws Exception {
+        storage.clear();
+        Assert.assertEquals(0, storage.getAll().length);
     }
 
     @Test
     public void update() throws Exception {
+        Resume r3 = new Resume(UUID_3);
+        storage.update(r3);
+        Assert.assertSame(storage.get(UUID_3), r3);
     }
 
     @Test(expected = NotExistStorageException.class)
@@ -85,5 +100,10 @@ public abstract class AbstractArrayStorageTest {
         storage.delete(UUID_4);
     }
 
+    @Test(expected = NotExistStorageException.class)
+    public void updateNotExist() throws Exception {
+        Resume r4 = new Resume(UUID_4);
+        storage.update(r4);
+    }
 
 }

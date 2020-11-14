@@ -12,6 +12,7 @@ import java.util.Arrays;
  */
 
 public abstract class AbstractArrayStorage implements Storage {
+
     protected static final int STORAGE_LIMIT = 10_000;
 
     protected Resume[] storage = new Resume[STORAGE_LIMIT];
@@ -69,8 +70,7 @@ public abstract class AbstractArrayStorage implements Storage {
     public void update(Resume resume) {
         int index = findResume(resume.getUuid());
         if (index < 0) {
-            System.out.format("Error: %s not found in Storage!\n", resume.getUuid());
-            return;
+            throw new NotExistStorageException(resume.getUuid());
         }
         storage[index] = resume;
         System.out.format("%s updated\n", resume.getUuid());
