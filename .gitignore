@@ -4,6 +4,7 @@ out
 *.iml
 log
 *.md
+/lib
 
 
 
