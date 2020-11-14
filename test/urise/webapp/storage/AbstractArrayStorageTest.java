@@ -1,6 +1,6 @@
 package urise.webapp.storage;
 
-import java.lang.reflect.Field;
+// import java.lang.reflect.Field;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -10,7 +10,7 @@ import urise.webapp.exception.NotExistStorageException;
 import urise.webapp.exception.StorageException;
 import urise.webapp.model.Resume;
 
-import java.lang.reflect.Field;
+// import java.lang.reflect.Field;
 
 public abstract class AbstractArrayStorageTest {
 
@@ -40,12 +40,14 @@ public abstract class AbstractArrayStorageTest {
 
     @Test(expected = StorageException.class)
     public void storageOverflow() throws Exception {
-        storage.clear();
+        /*storage.clear();
         AbstractArrayStorage.STORAGE_LIMIT
         Field field = storage.getClass().getSuperclass().getDeclaredField("STORAGE_LIMIT");
         field.setAccessible(true);
         int storageLimit = (int) field.get(storage);
-        for (int i = 0; i < storageLimit; i++) {
+         */
+        // for (int i = 0; i < storageLimit; i++) {
+        for (int i = 0; i < AbstractArrayStorage.STORAGE_LIMIT; i++) {
             Resume r = new Resume();
             try {
                 storage.save(r);
