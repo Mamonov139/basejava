@@ -4,6 +4,7 @@ import urise.webapp.model.Resume;
 import urise.webapp.storage.ArrayStorage;
 import urise.webapp.storage.Storage;
 
+
 /**
  * Interactive test for urise.webapp.storage.ArrayStorage implementation
  * (just run, no need to understand)
