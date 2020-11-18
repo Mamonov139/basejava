@@ -7,8 +7,6 @@ import urise.webapp.exception.ExistStorageException;
 import urise.webapp.exception.NotExistStorageException;
 import urise.webapp.model.Resume;
 
-import static org.junit.Assert.*;
-
 public class AbstractStorageTest {
 
     protected final Storage storage;
@@ -85,7 +83,6 @@ public class AbstractStorageTest {
         Assert.assertEquals(3, actualResumes.length);
         Assert.assertArrayEquals(expectedResumes, actualResumes);
     }
-
 
 
 }

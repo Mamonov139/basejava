@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ListStorage extends AbstractStorage {
 
-    protected List<Resume> listStorage = new ArrayList<>();
+    private List<Resume> listStorage = new ArrayList<>();
 
     @Override
     protected int findResume(String uuid) {
@@ -42,6 +42,18 @@ public class ListStorage extends AbstractStorage {
     @Override
     public void removeResume(int index) {
         listStorage.remove(index);
+    }
+
+    @Override
+    protected void checkCapacity(Resume resume) {
+    }
+
+    @Override
+    protected void incrementSize() {
+    }
+
+    @Override
+    protected void removeLastResume() {
     }
 
     @Override
