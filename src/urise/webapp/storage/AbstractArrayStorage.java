@@ -27,7 +27,7 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     }
 
     @Override
-    protected void checkCapacity(Resume resume) {
+    protected void checkOverflow(Resume resume) {
         if (size == STORAGE_LIMIT) {
             throw new StorageException("Storage overflow", resume.getUuid());
         }
@@ -35,17 +35,6 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
 
     public int size() {
         return size;
-    }
-
-    @Override
-    protected void incrementSize() {
-        size++;
-    }
-
-    @Override
-    protected void removeLastResume() {
-        addByIndex(size - 1, null);
-        size--;
     }
 
     public Resume[] getAll() {

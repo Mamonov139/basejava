@@ -16,21 +16,20 @@ public abstract class AbstractStorage implements Storage {
 
     protected abstract void removeResume(int index);
 
-    protected abstract void checkCapacity(Resume resume);
-
-    protected abstract void incrementSize();
-
-    protected abstract void removeLastResume();
-
     public void save(Resume resume) {
-        checkCapacity(resume);
         int index = findResume(resume.getUuid());
         if (index >= 0) {
             throw new ExistStorageException(resume.getUuid());
         }
-        insertResume(index, resume);
-        incrementSize();
+        saveResume(index, resume);
     }
+
+    protected void saveResume(int index, Resume resume) {
+        checkOverflow(resume);
+        insertResume(index, resume);
+    }
+
+    protected void checkOverflow(Resume resume) {}
 
     public void update(Resume resume) {
         int index = findResume(resume.getUuid());
@@ -47,7 +46,6 @@ public abstract class AbstractStorage implements Storage {
             throw new NotExistStorageException(uuid);
         }
         removeResume(index);
-        removeLastResume();
     }
 
     public Resume get(String uuid) {
