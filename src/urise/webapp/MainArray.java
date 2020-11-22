@@ -1,7 +1,7 @@
 package urise.webapp;
 
 import urise.webapp.model.Resume;
-import urise.webapp.storage.ArrayStorage;
+import urise.webapp.storage.MapStorage;
 import urise.webapp.storage.Storage;
 
 
@@ -11,7 +11,7 @@ import urise.webapp.storage.Storage;
  */
 public class MainArray {
     //public static final Storage ARRAY_STORAGE = new SortedArrayStorage();
-    public static final Storage ARRAY_STORAGE = new ArrayStorage();
+    public static final Storage ARRAY_STORAGE = new MapStorage();
 
     public static void main(String[] args) {
         Resume r1 = new Resume("uuid1");
@@ -23,6 +23,8 @@ public class MainArray {
         ARRAY_STORAGE.save(r4);
         ARRAY_STORAGE.save(r2);
         ARRAY_STORAGE.save(r3);
+
+        Resume[] r = ARRAY_STORAGE.getAll();
 
         System.out.println("Get r1: " + ARRAY_STORAGE.get(r1.getUuid()));
         System.out.println("Size: " + ARRAY_STORAGE.size());

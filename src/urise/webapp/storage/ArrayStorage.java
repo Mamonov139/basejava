@@ -9,7 +9,7 @@ import urise.webapp.model.Resume;
 public class ArrayStorage extends AbstractArrayStorage {
 
     @Override
-    protected void removeResume(int index) {
+    protected void removeResume(int index, String uuid) {
         storage[index] = storage[size - 1];
         addByIndex(--size, null);
     }

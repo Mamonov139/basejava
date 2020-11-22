@@ -22,7 +22,7 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     }
 
     @Override
-    protected Resume getByIndex(int index) {
+    protected Resume getByIndex(int index, String uuid) {
         return storage[index];
     }
 
