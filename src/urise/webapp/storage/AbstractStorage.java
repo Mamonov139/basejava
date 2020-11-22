@@ -29,7 +29,8 @@ public abstract class AbstractStorage implements Storage {
         insertResume(index, resume);
     }
 
-    protected void checkOverflow(Resume resume) {}
+    protected void checkOverflow(Resume resume) {
+    }
 
     public void update(Resume resume) {
         int index = findResume(resume.getUuid());
