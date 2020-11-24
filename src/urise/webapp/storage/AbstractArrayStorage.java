@@ -49,7 +49,7 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     @Override
     protected void removeResume(Object searchKey) {
         doRemove((int) searchKey);
-        storage[--size] = null;
+        updateResume(--size, null);
     }
 
     @Override
