@@ -12,6 +12,8 @@ public abstract class AbstractStorage implements Storage {
 
     protected abstract void saveResume(Object searchKey, Resume resume);
 
+    protected abstract void updateResume(Object searchKey, Resume resume);
+
     protected abstract void checkExist(String uuid);
 
     protected abstract void checkNotExist(String uuid);
@@ -23,7 +25,7 @@ public abstract class AbstractStorage implements Storage {
 
     public void update(Resume resume) {
         checkNotExist(resume.getUuid());
-        saveResume(findResume(resume.getUuid()), resume);
+        updateResume(findResume(resume.getUuid()), resume);
         System.out.format("%s updated\n", resume.getUuid());
     }
 

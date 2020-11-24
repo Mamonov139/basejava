@@ -36,6 +36,11 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     }
 
     @Override
+    protected void updateResume(Object searchKey, Resume resume) {
+        storage[(int) searchKey] = resume;
+    }
+
+    @Override
     protected void saveResume(Object searchKey, Resume resume) {
         checkOverflow(resume);
         doSave((int) searchKey, resume);
@@ -44,8 +49,8 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     @Override
     protected void removeResume(Object searchKey) {
         doRemove((int) searchKey);
-        saveResume(--size, null);
-        size--;
+        //saveResume(--size, null);
+        storage[--size] = null;
     }
 
     @Override

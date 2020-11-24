@@ -56,6 +56,11 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
+    protected void updateResume(Object searchKey, Resume resume) {
+        listStorage.add((int) searchKey, resume);
+    }
+
+    @Override
     public Resume[] getAll() {
         Resume[] r = new Resume[listStorage.size()];
         return listStorage.toArray(r);
