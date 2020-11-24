@@ -20,6 +20,6 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     protected void doSave(int index, Resume resume) {
         int insertIndex = -(index + 1);
         System.arraycopy(storage, insertIndex, storage, insertIndex + 1, size - insertIndex);
-        saveResume(insertIndex, resume);
+        storage[insertIndex] = resume;
     }
 }
