@@ -1,5 +1,7 @@
 package urise.webapp.storage;
 
+import urise.webapp.exception.ExistStorageException;
+import urise.webapp.exception.NotExistStorageException;
 import urise.webapp.model.Resume;
 
 import java.util.ArrayList;
@@ -10,23 +12,32 @@ public class ListStorage extends AbstractStorage {
     private final List<Resume> listStorage = new ArrayList<>();
 
     @Override
-    protected int findResume(String uuid) {
-        int index = 0;
-        for (Resume r : listStorage) {
-            if (uuid.equals(r.getUuid())) return index;
-            index++;
+    protected Object findResume(String uuid) {
+        for (int index = 0; index < size(); index++) {
+            if (uuid.equals(getResume(index).getUuid())) return index;
         }
         return -1;
     }
 
     @Override
-    protected void addByIndex(int index, Resume resume) {
-        listStorage.set(index, resume);
+    protected void checkExist(String uuid) {
+        Object searchKey = findResume(uuid);
+        if ((int) searchKey >= 0) {
+            throw new ExistStorageException(uuid);
+        }
     }
 
     @Override
-    protected Resume getByIndex(int index, String uuid) {
-        return listStorage.get(index);
+    protected void checkNotExist(String uuid) {
+        Object searchKey = findResume(uuid);
+        if ((int) searchKey < 0) {
+            throw new NotExistStorageException(uuid);
+        }
+    }
+
+    @Override
+    protected Resume getResume(Object searchKey) {
+        return listStorage.get((int) searchKey);
     }
 
     @Override
@@ -35,13 +46,13 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    protected void insertResume(int index, Resume resume) {
-        listStorage.add(resume);
+    public void removeResume(Object searchKey) {
+        listStorage.remove((int) searchKey);
     }
 
     @Override
-    public void removeResume(int index, String uuid) {
-        listStorage.remove(index);
+    protected void saveResume(Object searchKey, Resume resume) {
+        listStorage.add(resume);
     }
 
     @Override

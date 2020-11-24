@@ -4,11 +4,6 @@ import urise.webapp.model.Resume;
 import urise.webapp.storage.MapStorage;
 import urise.webapp.storage.Storage;
 
-
-/**
- * Interactive test for urise.webapp.storage.ArrayStorage implementation
- * (just run, no need to understand)
- */
 public class MainArray {
     //public static final Storage ARRAY_STORAGE = new SortedArrayStorage();
     public static final Storage ARRAY_STORAGE = new MapStorage();

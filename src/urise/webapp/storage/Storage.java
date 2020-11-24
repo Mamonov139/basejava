@@ -2,9 +2,6 @@ package urise.webapp.storage;
 
 import urise.webapp.model.Resume;
 
-/**
- * Array based storage for Resumes
- */
 
 public interface Storage {
 

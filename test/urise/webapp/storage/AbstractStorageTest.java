@@ -7,7 +7,7 @@ import urise.webapp.exception.ExistStorageException;
 import urise.webapp.exception.NotExistStorageException;
 import urise.webapp.model.Resume;
 
-public class AbstractStorageTest {
+public abstract class AbstractStorageTest {
 
     protected final Storage storage;
 
@@ -19,6 +19,8 @@ public class AbstractStorageTest {
     public AbstractStorageTest(Storage storage) {
         this.storage = storage;
     }
+
+    protected abstract void assertArrayEquals(Resume[] expectedResumes, Resume[] actualResumes) throws Exception;
 
     @Before
     public void setUp() throws Exception {
@@ -80,8 +82,7 @@ public class AbstractStorageTest {
     public void getAll() throws Exception {
         Resume[] expectedResumes = {new Resume(UUID_1), new Resume(UUID_2), new Resume(UUID_3)};
         Resume[] actualResumes = storage.getAll();
-        Assert.assertEquals(3, actualResumes.length);
-        Assert.assertArrayEquals(expectedResumes, actualResumes);
+        assertArrayEquals(expectedResumes, actualResumes);
     }
 
 

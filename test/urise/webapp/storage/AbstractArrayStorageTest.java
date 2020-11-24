@@ -7,11 +7,15 @@ import urise.webapp.model.Resume;
 
 public abstract class AbstractArrayStorageTest extends AbstractStorageTest {
 
-
     public AbstractArrayStorageTest(Storage storage) {
         super(storage);
     }
 
+    @Override
+    public void assertArrayEquals(Resume[] expectedResumes, Resume[] actualResumes) throws Exception {
+        Assert.assertEquals(3, actualResumes.length);
+        Assert.assertArrayEquals(expectedResumes, actualResumes);
+    }
 
     @Test(expected = StorageException.class)
     public void storageOverflow() throws Exception {

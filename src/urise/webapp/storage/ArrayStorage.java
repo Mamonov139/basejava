@@ -2,26 +2,21 @@ package urise.webapp.storage;
 
 import urise.webapp.model.Resume;
 
-/**
- * Array based storage for Resumes
- */
 
 public class ArrayStorage extends AbstractArrayStorage {
 
     @Override
-    protected void removeResume(int index, String uuid) {
+    protected void doRemove(int index) {
         storage[index] = storage[size - 1];
-        addByIndex(--size, null);
     }
 
     @Override
-    protected void insertResume(int index, Resume resume) {
-        storage[size] = resume;
-        size++;
+    protected void doSave(int index, Resume resume) {
+        saveResume(size, resume);
     }
 
     @Override
-    protected int findResume(String uuid) {
+    protected Object findResume(String uuid) {
         for (int i = 0; i < size; i++) {
             if (storage[i].getUuid().equals(uuid)) {
                 return i;
