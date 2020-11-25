@@ -1,5 +1,7 @@
 package urise.webapp.storage;
 
+import urise.webapp.exception.ExistStorageException;
+import urise.webapp.exception.NotExistStorageException;
 import urise.webapp.model.Resume;
 
 public abstract class AbstractStorage implements Storage {
@@ -14,9 +16,23 @@ public abstract class AbstractStorage implements Storage {
 
     protected abstract void updateResume(Object searchKey, Resume resume);
 
-    protected abstract void checkExist(String uuid);
+    protected abstract boolean doCheckExist(Object searchKey);
 
-    protected abstract void checkNotExist(String uuid);
+    protected abstract boolean doCheckNotExist(Object searchKey);
+
+    protected void checkExist(String uuid) {
+        Object searchKey = findResume(uuid);
+        if (doCheckExist(searchKey)) {
+            throw new ExistStorageException(uuid);
+        }
+    }
+
+    protected void checkNotExist(String uuid) {
+        Object searchKey = findResume(uuid);
+        if (doCheckNotExist(searchKey)) {
+            throw new NotExistStorageException(uuid);
+        }
+    }
 
     public void save(Resume resume) {
         checkExist(resume.getUuid());

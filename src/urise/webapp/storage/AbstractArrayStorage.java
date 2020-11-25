@@ -1,7 +1,5 @@
 package urise.webapp.storage;
 
-import urise.webapp.exception.ExistStorageException;
-import urise.webapp.exception.NotExistStorageException;
 import urise.webapp.exception.StorageException;
 import urise.webapp.model.Resume;
 
@@ -20,21 +18,14 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     protected abstract void doRemove(int index);
 
     @Override
-    protected void checkExist(String uuid) {
-        Object searchKey = findResume(uuid);
-        if ((int) searchKey >= 0) {
-            throw new ExistStorageException(uuid);
-        }
+    protected boolean doCheckExist(Object searchKey) {
+        return (int) searchKey >= 0;
     }
 
     @Override
-    protected void checkNotExist(String uuid) {
-        Object searchKey = findResume(uuid);
-        if ((int) searchKey < 0) {
-            throw new NotExistStorageException(uuid);
-        }
+    protected boolean doCheckNotExist(Object searchKey) {
+        return (int) searchKey < 0;
     }
-
     @Override
     protected void updateResume(Object searchKey, Resume resume) {
         storage[(int) searchKey] = resume;

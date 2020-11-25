@@ -1,7 +1,5 @@
 package urise.webapp.storage;
 
-import urise.webapp.exception.ExistStorageException;
-import urise.webapp.exception.NotExistStorageException;
 import urise.webapp.model.Resume;
 
 import java.util.HashMap;
@@ -17,29 +15,23 @@ public class MapStorage extends AbstractStorage {
     }
 
     @Override
-    protected void checkExist(String uuid) {
-        String searchKey = (String) findResume(uuid);
-        if (!searchKey.equals("null")) {
-            throw new ExistStorageException(uuid);
-        }
+    protected boolean doCheckExist(Object searchKey) {
+        return !((String) searchKey).equals("null");
     }
 
     @Override
-    protected void checkNotExist(String uuid) {
-        String searchKey = (String) findResume(uuid);
-        if (searchKey.equals("null")) {
-            throw new NotExistStorageException(uuid);
-        }
+    protected boolean doCheckNotExist(Object searchKey) {
+        return ((String) searchKey).equals("null");
     }
 
     @Override
     protected Resume getResume(Object searchKey) {
-        return mapStorage.get((String)searchKey);
+        return mapStorage.get((String) searchKey);
     }
 
     @Override
     protected void removeResume(Object searchKey) {
-        mapStorage.remove((String)searchKey);
+        mapStorage.remove((String) searchKey);
     }
 
     @Override
