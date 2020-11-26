@@ -18,16 +18,6 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    protected boolean doCheckExist(Object searchKey) {
-        return (int) searchKey >= 0;
-    }
-
-    @Override
-    protected boolean doCheckNotExist(Object searchKey) {
-        return (int) searchKey < 0;
-    }
-
-    @Override
     protected Resume getResume(Object searchKey) {
         return listStorage.get((int) searchKey);
     }
@@ -50,6 +40,11 @@ public class ListStorage extends AbstractStorage {
     @Override
     protected void updateResume(Object searchKey, Resume resume) {
         listStorage.add((int) searchKey, resume);
+    }
+
+    @Override
+    protected boolean isExist(Object searchKey) {
+        return (int) searchKey >= 0;
     }
 
     @Override

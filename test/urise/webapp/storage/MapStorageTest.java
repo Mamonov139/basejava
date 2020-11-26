@@ -12,11 +12,4 @@ public class MapStorageTest extends AbstractStorageTest {
     public MapStorageTest() {
         super(new MapStorage());
     }
-
-    @Override
-    public void assertArrayEquals(Resume[] expectedResumes, Resume[] actualResumes) throws Exception {
-        Set<Resume> expectedResumesSet = new HashSet<Resume>(Arrays.asList(expectedResumes));
-        Set<Resume> actualResumesSet = new HashSet<Resume>(Arrays.asList(actualResumes));
-        Assert.assertEquals(expectedResumesSet, actualResumesSet);
-    }
 }
