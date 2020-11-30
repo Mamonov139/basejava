@@ -8,6 +8,7 @@ import urise.webapp.exception.NotExistStorageException;
 import urise.webapp.model.Resume;
 
 import java.util.Arrays;
+import java.util.List;
 
 public abstract class AbstractStorageTest {
 
@@ -79,12 +80,12 @@ public abstract class AbstractStorageTest {
     }
 
     @Test
-    public void getAll() throws Exception {
-        Resume[] expectedResumes = {new Resume(UUID_1), new Resume(UUID_2), new Resume(UUID_3)};
-        Resume[] actualResumes = storage.getAll();
-        Arrays.sort(actualResumes);
-        Assert.assertArrayEquals(actualResumes, expectedResumes);
+    public void getAllSorted() throws Exception {
+        List<Resume> expectedResumes = Arrays.asList((new Resume(UUID_1)), new Resume(UUID_2), new Resume(UUID_3));
+        List<Resume> actualResumes = storage.getAllSorted();
+        Assert.assertArrayEquals(actualResumes.toArray(), expectedResumes.toArray());
     }
+
 
     @Test
     public void update() throws Exception {
