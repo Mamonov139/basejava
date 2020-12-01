@@ -4,7 +4,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 
-public class Resume implements Comparable<Resume> {
+public class Resume {
 
     private final String uuid;
 
@@ -52,15 +52,6 @@ public class Resume implements Comparable<Resume> {
     public String toString() {
         return uuid;
     }
-
-    @Override
-    public int compareTo(Resume o) {
-        if (this.getFullname().equals(o.getFullname())) {
-            return uuid.compareTo(o.uuid);
-        }
-        return this.getFullname().compareTo(o.getFullname());
-    }
-
 
 }
 

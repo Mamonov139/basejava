@@ -58,7 +58,6 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         return resumeList;
     }
 
-
     public void clear() {
         Arrays.fill(storage, 0, size, null);
         size = 0;

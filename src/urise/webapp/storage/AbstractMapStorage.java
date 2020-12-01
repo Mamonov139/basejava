@@ -2,26 +2,14 @@ package urise.webapp.storage;
 
 import urise.webapp.model.Resume;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class MapStorage extends AbstractStorage {
+public abstract class AbstractMapStorage extends AbstractStorage {
 
-    private final Map<String, Resume> mapStorage = new HashMap<>();
-
-    @Override
-    protected Object findResume(String uuid) {
-        return mapStorage.containsKey(uuid) ? uuid : null;
-    }
-
-    @Override
-    protected Resume getResume(Object searchKey) {
-        return mapStorage.get(searchKey);
-    }
-
-    @Override
-    protected void removeResume(Object searchKey) {
-        mapStorage.remove(searchKey);
-    }
+    protected final Map<String, Resume> mapStorage = new HashMap<>();
 
     @Override
     protected void saveResume(Object searchKey, Resume resume) {
@@ -45,10 +33,9 @@ public class MapStorage extends AbstractStorage {
 
     @Override
     public List<Resume> getAllSorted() {
-        List<Resume> resumeList = new ArrayList<Resume>(mapStorage.values());
+        List<Resume> resumeList = new ArrayList<>(mapStorage.values());
         resumeList.sort(RESUME_COMPARATOR);
         return resumeList;
-
     }
 
     @Override
