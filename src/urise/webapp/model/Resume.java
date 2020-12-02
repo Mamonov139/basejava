@@ -14,13 +14,15 @@ public class Resume {
         this(UUID.randomUUID().toString(), "");
     }
 
-    public Resume(String... args) {
-        this.uuid = args[0];
-        this.fullname = "";
-        if (args.length != 1) {
-            this.fullname = args[1];
-        }
+    public Resume(String uuid, String fullname) {
+        this.fullname = fullname;
+        this.uuid = uuid;
     }
+
+    public Resume(String uuid) {
+        this(uuid, "");
+    }
+
 
     public String getUuid() {
         return uuid;
