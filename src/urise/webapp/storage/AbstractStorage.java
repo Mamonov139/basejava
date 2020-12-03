@@ -9,9 +9,7 @@ import java.util.List;
 
 public abstract class AbstractStorage implements Storage {
 
-    protected static final Comparator<Resume> RESUME_FULLNAME_COMPARATOR = (o1, o2) -> {
-        return o1.getFullname().equals(o2.getFullname()) ? o1.getUuid().compareTo(o2.getUuid()) : o1.getFullname().compareTo(o2.getFullname());
-    };
+    protected static final Comparator<Resume> RESUME_FULLNAME_COMPARATOR = Comparator.comparing(Resume::getFullnameWithUuid);
 
     protected abstract Object findResume(String uuid);
 
