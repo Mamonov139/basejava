@@ -48,10 +48,9 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    public List<Resume> getAllSorted() {
+    protected List<Resume> getResumeList() {
         List<Resume> ls;
-        (ls = listStorage).sort(RESUME_FULLNAME_COMPARATOR);
-        return ls;
+        return ls = listStorage;
     }
 
     @Override
