@@ -8,14 +8,14 @@ public class Resume {
 
     private final String uuid;
 
-    private String fullname;
+    private String fullName;
 
-    public Resume(String fullname) {
-        this(UUID.randomUUID().toString(), fullname);
+    public Resume(String fullName) {
+        this(UUID.randomUUID().toString(), fullName);
     }
 
-    public Resume(String uuid, String fullname) {
-        this.fullname = fullname;
+    public Resume(String uuid, String fullName) {
+        this.fullName = fullName;
         this.uuid = uuid;
     }
 
@@ -24,11 +24,11 @@ public class Resume {
     }
 
     public String getFullname() {
-        return fullname;
+        return fullName;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setFullname(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getFullnameWithUuid() {
