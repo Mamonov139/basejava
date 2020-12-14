@@ -6,8 +6,11 @@ public class SectionFactory {
             case PERSONAL:
             case OBJECTIVE:
                 return new SingleLineSection(value);
+            case EXPERIENCE:
+            case EDUCATION:
+                return new BulletedLineSection<WorkPlace>(value);
             default:
-                return new BulletedLineSection(value);
+                return new BulletedLineSection<String>(value);
         }
     }
 }

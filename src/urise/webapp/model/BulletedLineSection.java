@@ -2,9 +2,9 @@ package urise.webapp.model;
 
 import java.util.ArrayList;
 
-public class BulletedLineSection implements Section {
+public class BulletedLineSection<E> implements Section {
   
-  private final ArrayList<?> bulletedLineValues;
+  private final ArrayList<E> bulletedLineValues;
 
     public BulletedLineSection(String value) {
         bulletedLineValues = null;
