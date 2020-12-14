@@ -1,5 +1,6 @@
 package urise.webapp.model;
 
+import java.util.HashMap;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -10,6 +11,10 @@ public class Resume {
 
     private String fullName;
 
+    private HashMap<ContactsType, String> contacts;
+
+    private HashMap<SectionType, Section> sections;
+
     public Resume(String fullName) {
         this(UUID.randomUUID().toString(), fullName);
     }
@@ -17,6 +22,12 @@ public class Resume {
     public Resume(String uuid, String fullName) {
         this.fullName = fullName;
         this.uuid = uuid;
+    }
+
+    public Resume(String fullName, HashMap<ContactsType, String> contacts, HashMap<SectionType, Section> sections) {
+        this(fullName);
+        this.contacts.putAll(contacts);
+        this.sections.putAll(sections);
     }
 
     public String getUuid() {
@@ -33,6 +44,22 @@ public class Resume {
 
     public String getFullnameWithUuid() {
         return getFullname() + " " + getUuid();
+    }
+
+    public String getContact(ContactsType contactsType) {
+        return null;
+    }
+
+    public void setContact(ContactsType contactsType, String value) {
+
+    }
+
+    public String getSectionValue(SectionType sectionType) {
+        return null;
+    }
+
+    public void setSectionValue(ContactsType contactsType, String value) {
+
     }
 
     @Override
@@ -52,6 +79,18 @@ public class Resume {
     @Override
     public String toString() {
         return uuid;
+    }
+
+    protected interface Boo {
+
+    }
+
+    protected abstract class Foo {
+
+    }
+
+    protected class Foo1 extends Foo {
+
     }
 }
 
