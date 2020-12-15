@@ -1,19 +1,18 @@
 package urise.webapp.model;
 
 public class SingleLineSection implements Section {
-    private final String singleLineValue;
+    private String singleLineValue;
 
     public SingleLineSection(String value) {
-        singleLineValue = null;
+        singleLineValue = value;
+    }
+
+    public void setSectionValue(String value) {
+        singleLineValue = value;
     }
 
     @Override
-    public void setSectionValue(String value, SectionType section) {
-
-    }
-
-    @Override
-    public String getSectionValue(SectionType section) {
-        return null;
+    public String getSectionValue() {
+        return singleLineValue;
     }
 }
