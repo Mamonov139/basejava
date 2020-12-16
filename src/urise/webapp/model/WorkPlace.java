@@ -9,7 +9,7 @@ public class WorkPlace {
     private LocalDate dataFrom;
     private LocalDate dataTo;
 
-    public WorkPlace(String place, String description, LocalDate dataFrom, LocalDate dataTo) {
+    public WorkPlace(String place, LocalDate dataFrom, LocalDate dataTo, String description) {
         this.place = place;
         this.description = description;
         this.dataFrom = dataFrom;
@@ -42,7 +42,11 @@ public class WorkPlace {
         sb.append(dataTo.toString());
         sb.append("\t");
         sb.append(description);
-        sb.append("\n");
+        //sb.append("\n");
         return sb.toString();
+    }
+
+    public String toString(){
+        return  getWorkPlace();
     }
 }

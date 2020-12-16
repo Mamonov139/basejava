@@ -11,9 +11,9 @@ public class Resume {
 
     private String fullName;
 
-    private HashMap<ContactsType, String> contacts;
+    private HashMap<ContactsType, String> contacts = new HashMap<>();
 
-    private HashMap<SectionType, Section> sections;
+    private HashMap<SectionType, Section> sections = new HashMap<>();
 
     public Resume(String fullName) {
         this(UUID.randomUUID().toString(), fullName);
@@ -47,7 +47,7 @@ public class Resume {
     }
 
     public String getContact(ContactsType contactsType) {
-        return null;
+        return contacts.get(contactsType);
     }
 
     public void setContact(ContactsType contactsType, String value) {
@@ -55,7 +55,7 @@ public class Resume {
     }
 
     public String getSectionValue(SectionType sectionType) {
-        return null;
+        return sections.get(sectionType).getSectionValue();
     }
 
     public void setSectionValue(ContactsType contactsType, String value) {
