@@ -1,8 +1,8 @@
 package urise.webapp.model;
 
 public enum ContactsType {
-    PHONE("Телефон"),
-    EMAIL("@mail");
+    PHONE("Телефон: "),
+    EMAIL("@mail: ");
 
     private String title;
 

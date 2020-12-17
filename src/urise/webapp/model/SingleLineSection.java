@@ -13,6 +13,8 @@ public class SingleLineSection implements Section {
 
     @Override
     public String getSectionValue() {
-        return singleLineValue;
+        StringBuilder sb = new StringBuilder(singleLineValue);
+        sb.append(" \n");
+        return sb.toString();
     }
 }

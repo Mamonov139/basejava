@@ -44,12 +44,14 @@ public class ResumeTestData {
         Resume r = new Resume("Григорий Кислин", contacts, section);
 
         System.out.println(r.getFullname());
-
+        System.out.println("\n");
         for (ContactsType c : ContactsType.values()) {
+            System.out.print(c.getTitle());
             System.out.println(r.getContact(c));
         }
-
+        System.out.println("\n");
         for (SectionType s : SectionType.values()) {
+            System.out.print(s.getTitle());
             System.out.println(r.getSectionValue(s));
         }
     }
